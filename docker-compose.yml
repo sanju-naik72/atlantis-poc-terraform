@@ -10,11 +10,15 @@ services:
       - ATLANTIS_GH_TOKEN=${ATLANTIS_GH_TOKEN}
       - ATLANTIS_GH_WEBHOOK_SECRET=${ATLANTIS_GH_WEBHOOK_SECRET}
       - ATLANTIS_REPO_ALLOWLIST=github.com/sanju-naik72/*
+      - ATLANTIS_PORT=4141
+      - ATLANTIS_URL=https://038ca065226f.ngrok-free.app
+      - ATLANTIS_GH_HOSTNAME=github.com
+      - ATLANTIS_DATA_DIR=/atlantis-data
+      - ATLANTIS_DISABLE_AUTOPLAN=false
+      - ATLANTIS_WRITE_GIT_CREDS=true
     volumes:
       - ./:/atlantis-data
     command:
       - atlantis
       - server
-      - --atlantis-url=http://localhost:4141
-      - --repo-allowlist=github.com/sanju-naik72/*
-      - --repo-config=/atlantis-data/atlantis.yaml
+      - --log-level=debug
