@@ -1,15 +1,13 @@
+version: 3
+automerge: false
+delete_source_branch_on_merge: true
 repos:
-  - id: /.*/
-    workflow: default
-    allowed_overrides: [workflow]
-    allow_custom_workflows: true
-
-workflows:
-  default:
-    plan:
-      steps:
-        - init
-        - plan
-    apply:
-      steps:
-        - apply
+  - id: "github.com/sanju-naik72/atlantis-poc-terraform"
+    allowed_overrides: ["delete_source_branch_on_merge"]
+projects:
+- dir: .
+  workspace: default
+  terraform_version: v1.5.0
+  autoplan:
+    when_modified: ["*.tf", "*.tfvars"]
+    enabled: true
